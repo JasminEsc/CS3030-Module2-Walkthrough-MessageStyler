@@ -23,7 +23,7 @@ error() {
   exit 2
 }
 
-#default name
+# default name
 name="stranger"
 
 # parse option (-h, -n NAME)
