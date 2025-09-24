@@ -26,6 +26,7 @@ error() {
 #default name
 name="stranger"
 
+# parse option (-h, -n NAME)
 while getopts ":hn:" opt; do
   case "$opt" in
     h) usage; exit 0 ;;
