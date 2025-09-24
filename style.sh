@@ -16,7 +16,7 @@ Examples:
 TXT
 }
 
-# taskA
+# taskA added
 error() {
   echo "Error: $1"
   usage
@@ -26,7 +26,7 @@ error() {
 # default name
 name="stranger"
 
-# parse option (-h, -n NAME)
+# parse option (-h, -n NAME); taskA added
 while getopts ":hn:" opt; do
   case "$opt" in
     h) usage; exit 0 ;;      # show help
