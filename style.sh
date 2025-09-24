@@ -22,27 +22,35 @@ error() {
   exit 2
 }
 
-# default name
-name="stranger"
-count=1     # set count; taskB added
+name="stranger"     # default name
+count=1             # default count
+upper=false         # default upper; taskC added
 
-# parse option (-h, -n NAME, -c COUNT)
-while getopts ":hn:c:" opt; do        # inside getopts string ( c: ); taskB added
+# parse option (-h, -n NAME, -c COUNT, -u)
+while getopts ":hn:c:u" opt; do        # inside getopts string ( u ); taskC added
   case "$opt" in
     h) usage; exit 0 ;;           # show help
     n) name="$OPTARG" ;;          # show name
     c) count="$OPTARG" ;;         # show count; taskB added
+    u) upper=true ;;              # set upper case flag; taskC added
     \?) error "Unknown option: -$OPTARG" ;;
     :) error "Missing argument for -$OPTARG" ;;
   esac
 done
 
-# Validate count (must be integer >= 1); taskB added
+# Validate count (must be integer >= 1)
 if ! [[ "$count" =~ ^[1-9][0-9]*$ ]]; then
   error "COUNT must be a positive integer (>=1)."
 fi
 
-# Print greeting COUNT times; taskB added
+# Print greeting COUNT times
+msg="Hello, $name!"       # default message; taskC added
+
 for ((i=1; i<=count; i++)); do
-  echo "Hello, $name!"
+  # if true, translating characters; taskC added
+  if [ "$upper" = true ]; then
+    echo "$msg" | tr '[:lower:]' '[:upper:]'
+  else
+    echo "$msg"
+  fi
 done
