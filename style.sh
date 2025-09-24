@@ -26,7 +26,7 @@ error() {
 name="stranger"
 count=1     # set count; taskB added
 
-# parse option (-h, -n NAME, -c COUNT)
+# parse option (-h, -n NAME, -c COUNT); taskB added
 while getopts ":hn:c:" opt; do        # inside getopts string ( c: ); taskB added
   case "$opt" in
     h) usage; exit 0 ;;           # show help
