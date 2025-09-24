@@ -1,4 +1,3 @@
-cat > style.sh <<'EOF'
 #!/usr/bin/env bash
 # Name: Jasmin | CS 3030 | Module 2 (Tutorial)
 # Mini-Programming Walktrhough: Message Styler
@@ -24,13 +23,23 @@ Examples:
 TXT
 }
 
+# taskA
+error() {
+  echo "Error: $1"
+  usage
+  exit 2
+}
+
 #default name
 name="stranger"
 
-if [[ "${1:-}" == "-h" ]]; then
-  usage
-  exit 0
-fi
+while getopts ":hn:" opt; do
+  case "$opt" in
+    h) usage; exit 0 ;;
+    n) name="$OPTARG" ;;
+    \?) error "Unknown option: -$OPTARG" ;;
+    :) error "Missing argument for -$OPTARG" ;;
+  esac
+done
 
 echo "Hello, $name!"
-EOF
