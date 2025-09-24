@@ -33,12 +33,6 @@ error() {
 # default name
 name="stranger"
 
-# original
-  # if [[ "${1:-}" == "-h" ]]; then
-  #   usage
-  #   exit 0
-  # fi
-
 # taskA~
 # Parse options (-h, -n NAME)
 while getopts ":hn:" opt; do
