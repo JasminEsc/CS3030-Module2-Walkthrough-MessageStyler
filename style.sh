@@ -22,9 +22,8 @@ error() {
   exit 2
 }
 
-# default name
-name="stranger"
-count=1     # set count; taskB added
+name="stranger"   # default name
+count=1           # default count; taskB added
 
 # parse option (-h, -n NAME, -c COUNT)
 while getopts ":hn:c:" opt; do        # inside getopts string ( c: ); taskB added
