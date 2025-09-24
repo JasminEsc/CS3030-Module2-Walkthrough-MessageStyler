@@ -1,4 +1,3 @@
-cat > style.sh <<'EOF'
 #!/usr/bin/env bash
 # Name: Jasmin | CS 3030 | Module 2 (Tutorial)
 # Mini-Programming Walktrhough: Message Styler
@@ -15,8 +14,8 @@ usage() {
   cat <<TXT
 Usage: ${0##*/} [-h] [-n NAME]
 Options:
-  -h        Show this help message
-  -n NAME   Greet NAME (default: stranger)
+  -h      Show this help message
+  -n NAME Greet NAME (default: stranger)
 
 Examples:
   ${0##*/} -n Mackenzie
@@ -24,12 +23,32 @@ Examples:
 TXT
 }
 
+# taskA~
+error() {
+  echo "Error: $1"
+  usage
+  exit 2
+}
+
+# default name
 name="stranger"
 
-if [[ "${1:-}" == "-h" ]]; then
-  usage
-  exit 0
-fi
+# original
+  # if [[ "${1:-}" == "-h" ]]; then
+  #   usage
+  #   exit 0
+  # fi
 
+# taskA~
+# Parse options (-h, -n NAME)
+while getopts ":hn:" opt; do
+  case "$opt" in
+    h) usage; exit 0 ;;                 # show help
+    n) name="$OPTARG" ;;                 # store argument into name
+    \?) error "Unknown option: -$OPTARG" ;;
+    :) error "Missing argument for -$OPTARG" ;;
+  esac
+done
+
+# Print greeting
 echo "Hello, $name!"
-EOF
