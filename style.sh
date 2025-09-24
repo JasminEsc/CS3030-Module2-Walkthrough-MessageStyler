@@ -29,8 +29,8 @@ name="stranger"
 # parse option (-h, -n NAME)
 while getopts ":hn:" opt; do
   case "$opt" in
-    h) usage; exit 0 ;;
-    n) name="$OPTARG" ;;
+    h) usage; exit 0 ;;      # show help
+    n) name="$OPTARG" ;;     # show name
     \?) error "Unknown option: -$OPTARG" ;;
     :) error "Missing argument for -$OPTARG" ;;
   esac
